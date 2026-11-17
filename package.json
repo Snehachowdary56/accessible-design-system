@@ -1,0 +1,16 @@
+{
+  "name": "accessible-design-system",
+  "version": "1.0.0",
+  "description": "Accessible design system and UX case study",
+  "scripts": {
+    "test": "vitest run",
+    "tokens": "node scripts/build-tokens.js"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "axe-core": "^4.14.1",
+    "jsdom": "^25.0.1",
+    "vitest": "^2.1.9"
+  },
+  "private": true
+}

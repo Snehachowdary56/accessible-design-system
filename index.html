@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Harbour Design System – accessible components and guidelines</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+<a class="ds-skip-link" href="#main">Skip to main content</a>
+<div class="doc">
+  <header>
+    <h1>Harbour Design System</h1>
+    <p>A small, accessible design system for a fictional insurance company: design tokens, seven reusable
+      components, usage guidelines and naming conventions. Every colour pair is checked against WCAG 2.2 AA,
+      and every page is tested automatically with axe-core.</p>
+    <nav aria-label="Sections">
+      <ul>
+        <li><a href="#principles">Principles</a></li>
+        <li><a href="#tokens">Tokens</a></li>
+        <li><a href="#components">Components</a></li>
+        <li><a href="#naming">Naming</a></li>
+        <li><a href="#accessibility">Accessibility</a></li>
+        <li><a href="case-study.html">UX case study</a></li>
+        <li><a href="prototype.html">Prototype</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section id="principles" aria-labelledby="principles-h">
+      <h2 id="principles-h">Design principles</h2>
+      <div class="grid-3">
+        <div class="ds-card"><h3>Clear before clever</h3><p>Plain words, one primary action per screen, and labels that say what happens next.</p></div>
+        <div class="ds-card"><h3>Accessible by default</h3><p>Contrast, focus, keyboard use and screen reader names are built into each component, so teams do not have to remember them.</p></div>
+        <div class="ds-card"><h3>Tokens, not overrides</h3><p>Teams change the look through tokens. Behaviour stays in the component, so it stays consistent everywhere.</p></div>
+      </div>
+    </section>
+
+    <section id="tokens" aria-labelledby="tokens-h">
+      <h2 id="tokens-h">Design tokens</h2>
+      <p>Tokens are named design decisions. Source of truth: <code>tokens/tokens.json</code>, compiled to CSS variables by <code>npm run tokens</code>.</p>
+      <h3>Colour</h3>
+      <table>
+        <caption class="ds-visually-hidden">Colour tokens with their values and uses</caption>
+        <thead><tr><th scope="col">Swatch</th><th scope="col">Token</th><th scope="col">Value</th><th scope="col">Use</th></tr></thead>
+        <tbody>
+          <tr><td><span class="swatch" style="background:#1F4E8C"></span></td><td><code>--ds-color-brand</code></td><td>#1F4E8C</td><td>Primary actions, links, selected states</td></tr>
+          <tr><td><span class="swatch" style="background:#173B6A"></span></td><td><code>--ds-color-brand-strong</code></td><td>#173B6A</td><td>Hover and pressed state of brand</td></tr>
+          <tr><td><span class="swatch" style="background:#EEF4FC"></span></td><td><code>--ds-color-brand-subtle</code></td><td>#EEF4FC</td><td>Selected background, info alerts</td></tr>
+          <tr><td><span class="swatch" style="background:#1A1F2B"></span></td><td><code>--ds-color-text</code></td><td>#1A1F2B</td><td>Body text (16.47:1 on white)</td></tr>
+          <tr><td><span class="swatch" style="background:#4A5468"></span></td><td><code>--ds-color-text-muted</code></td><td>#4A5468</td><td>Helper text (7.61:1 on white)</td></tr>
+          <tr><td><span class="swatch" style="background:#7C8597"></span></td><td><code>--ds-color-border</code></td><td>#7C8597</td><td>Control borders (3.71:1, meets 3:1 for non-text)</td></tr>
+          <tr><td><span class="swatch" style="background:#2E6BD1"></span></td><td><code>--ds-color-focus</code></td><td>#2E6BD1</td><td>Keyboard focus ring</td></tr>
+          <tr><td><span class="swatch" style="background:#B42318"></span></td><td><code>--ds-color-danger</code></td><td>#B42318</td><td>Errors and destructive actions</td></tr>
+          <tr><td><span class="swatch" style="background:#067647"></span></td><td><code>--ds-color-success</code></td><td>#067647</td><td>Success messages</td></tr>
+          <tr><td><span class="swatch" style="background:#7A4B00"></span></td><td><code>--ds-color-warning</code></td><td>#7A4B00</td><td>Warnings</td></tr>
+        </tbody>
+      </table>
+      <h3>Spacing, radius and type</h3>
+      <p>Spacing uses a 4px base: <code>--ds-space-1</code> (4px) to <code>--ds-space-7</code> (48px). Radius: sm 4px, md 8px, lg 12px, pill.
+        Type sizes: 0.875rem, 1rem, 1.25rem, 1.75rem. Minimum touch target: <code>--ds-target-min</code> = 44px.</p>
+    </section>
+
+    <section id="components" aria-labelledby="components-h">
+      <h2 id="components-h">Components</h2>
+
+      <h3 id="button">Button</h3>
+      <p>Use a button for an action and a link for navigation. One primary button per screen.</p>
+      <div class="example row">
+        <button class="ds-button ds-button--primary" type="button">Submit claim</button>
+        <button class="ds-button ds-button--secondary" type="button">Save draft</button>
+        <button class="ds-button ds-button--tertiary" type="button">Cancel</button>
+        <button class="ds-button ds-button--primary" type="button" aria-disabled="true">Submit (unavailable)</button>
+        <button class="ds-button ds-button--primary" type="button" aria-busy="true">Saving</button>
+      </div>
+      <div class="do-dont">
+        <div><h4>Do</h4><p>Start labels with a verb: “Submit claim”, “Upload receipt”.</p></div>
+        <div><h4>Don't</h4><p>Use vague labels like “Click here” or “OK” that make no sense out of context.</p></div>
+      </div>
+      <p><strong>Accessibility:</strong> disabled buttons use <code>aria-disabled</code> instead of <code>disabled</code>, so keyboard and screen reader users can still find them. The loading state uses <code>aria-busy</code>, and the spinner stops when the user prefers reduced motion.</p>
+
+      <h3 id="text-field">Text field</h3>
+      <div class="example">
+        <form id="demo-form" novalidate>
+          <div class="ds-field">
+            <label class="ds-field__label" for="policy">Policy number</label>
+            <span class="ds-field__hint" id="policy-hint">8 digits, on your policy card</span>
+            <input class="ds-field__input" id="policy" name="policy" inputmode="numeric" autocomplete="off"
+                   aria-describedby="policy-hint policy-error" data-required="Enter your policy number"
+                   data-pattern="^[0-9]{8}$" data-pattern-message="Policy number must be 8 digits">
+            <span class="ds-field__error" id="policy-error" aria-live="polite"></span>
+          </div>
+          <button class="ds-button ds-button--secondary" type="submit">Check</button>
+        </form>
+      </div>
+      <p><strong>Accessibility:</strong> every input has a visible <code>&lt;label&gt;</code>. Hints and errors are linked with
+        <code>aria-describedby</code>, errors set <code>aria-invalid</code>, and error text starts with “Error:” so it does not rely on colour alone.</p>
+
+      <h3 id="choices">Checkbox and radio group</h3>
+      <div class="example">
+        <fieldset class="ds-fieldset">
+          <legend>How should we contact you?</legend>
+          <label class="ds-choice"><input type="radio" name="contact" value="email" checked> Email</label>
+          <label class="ds-choice"><input type="radio" name="contact" value="phone"> Phone</label>
+        </fieldset>
+        <label class="ds-choice"><input type="checkbox" name="updates"> Send me claim status updates</label>
+      </div>
+      <p><strong>Accessibility:</strong> related options are grouped in a <code>&lt;fieldset&gt;</code> with a <code>&lt;legend&gt;</code>, and each row is a 44px target.</p>
+
+      <h3 id="switch">Switch</h3>
+      <div class="example">
+        <button class="ds-switch" type="button" role="switch" aria-checked="false" id="paperless">
+          <span class="ds-switch__track" aria-hidden="true"></span>
+          <span>Paperless statements</span>
+          <span class="ds-switch__state" aria-hidden="true">Off</span>
+        </button>
+      </div>
+      <p>Use a switch for a setting that takes effect immediately; use a checkbox inside forms that are submitted later.
+        <strong>Accessibility:</strong> <code>role="switch"</code> with <code>aria-checked</code>; Space and Enter toggle it.</p>
+
+      <h3 id="alert">Alert</h3>
+      <div class="example">
+        <div class="ds-alert ds-alert--info" role="status"><span class="ds-alert__icon" aria-hidden="true">i</span><div><p class="ds-alert__title">Info</p><p>Most claims are reviewed within 5 business days.</p></div></div>
+        <div class="ds-alert ds-alert--success" role="status"><span class="ds-alert__icon" aria-hidden="true">✓</span><div><p class="ds-alert__title">Success</p><p>Your receipt was uploaded.</p></div></div>
+        <div class="ds-alert ds-alert--warning" role="status"><span class="ds-alert__icon" aria-hidden="true">!</span><div><p class="ds-alert__title">Warning</p><p>Your session ends in 2 minutes.</p></div></div>
+        <div class="ds-alert ds-alert--error" role="alert"><span class="ds-alert__icon" aria-hidden="true">×</span><div><p class="ds-alert__title">Error</p><p>We could not upload the file. Try a PDF or JPG under 10 MB.</p></div></div>
+      </div>
+      <p><strong>Accessibility:</strong> each alert has a written title, not only a colour or icon. Errors use <code>role="alert"</code> so they are announced immediately.</p>
+
+      <h3 id="tabs">Tabs</h3>
+      <div class="example">
+        <div class="ds-tabs">
+          <div class="ds-tabs__list" role="tablist" aria-label="Claim details">
+            <button class="ds-tabs__tab" role="tab" type="button" id="tab-1" aria-controls="panel-1" aria-selected="true">Overview</button>
+            <button class="ds-tabs__tab" role="tab" type="button" id="tab-2" aria-controls="panel-2" aria-selected="false" tabindex="-1">Documents</button>
+            <button class="ds-tabs__tab" role="tab" type="button" id="tab-3" aria-controls="panel-3" aria-selected="false" tabindex="-1">History</button>
+          </div>
+          <div class="ds-tabs__panel" role="tabpanel" id="panel-1" aria-labelledby="tab-1" tabindex="0">Claim submitted on 12 November. Status: in review.</div>
+          <div class="ds-tabs__panel" role="tabpanel" id="panel-2" aria-labelledby="tab-2" tabindex="0" hidden>2 receipts uploaded.</div>
+          <div class="ds-tabs__panel" role="tabpanel" id="panel-3" aria-labelledby="tab-3" tabindex="0" hidden>No changes yet.</div>
+        </div>
+      </div>
+      <p><strong>Keyboard:</strong> Tab moves into the tab list, Left/Right arrows switch tabs, Home/End jump to the first or last tab.</p>
+
+      <h3 id="dialog">Dialog</h3>
+      <div class="example">
+        <button class="ds-button ds-button--danger" type="button" data-dialog-open="cancel-dialog">Cancel claim</button>
+        <dialog class="ds-dialog" id="cancel-dialog" aria-labelledby="cancel-title" aria-describedby="cancel-desc">
+          <h4 id="cancel-title">Cancel this claim?</h4>
+          <p id="cancel-desc">You will lose the details you entered. This cannot be undone.</p>
+          <div class="ds-dialog__actions">
+            <button class="ds-button ds-button--secondary" type="button" data-dialog-close>Keep claim</button>
+            <button class="ds-button ds-button--danger" type="button" data-dialog-close>Cancel claim</button>
+          </div>
+        </dialog>
+      </div>
+      <p><strong>Accessibility:</strong> focus moves into the dialog, Escape closes it, and focus returns to the button that opened it. The safe choice comes first.</p>
+    </section>
+
+    <section id="naming" aria-labelledby="naming-h">
+      <h2 id="naming-h">Naming conventions</h2>
+      <table>
+        <caption class="ds-visually-hidden">Naming conventions</caption>
+        <thead><tr><th scope="col">What</th><th scope="col">Pattern</th><th scope="col">Example</th></tr></thead>
+        <tbody>
+          <tr><td>Token</td><td><code>--ds-&lt;category&gt;-&lt;name&gt;</code></td><td><code>--ds-color-brand-subtle</code></td></tr>
+          <tr><td>Component</td><td><code>ds-&lt;component&gt;</code></td><td><code>ds-button</code></td></tr>
+          <tr><td>Part of a component</td><td><code>ds-&lt;component&gt;__&lt;part&gt;</code></td><td><code>ds-field__error</code></td></tr>
+          <tr><td>Variant</td><td><code>ds-&lt;component&gt;--&lt;variant&gt;</code></td><td><code>ds-button--secondary</code></td></tr>
+          <tr><td>State</td><td>ARIA attribute, never a class</td><td><code>aria-disabled="true"</code>, <code>aria-invalid="true"</code></td></tr>
+          <tr><td>Figma component</td><td><code>Component / Variant / State</code></td><td><code>Button / Primary / Disabled</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="accessibility" aria-labelledby="a11y-h">
+      <h2 id="a11y-h">Accessibility checklist (WCAG 2.2 AA and AODA)</h2>
+      <p>Ontario's AODA requires WCAG 2.0 AA for public websites of large organizations. This system targets WCAG 2.2 AA.</p>
+      <table>
+        <caption class="ds-visually-hidden">WCAG success criteria and how the system meets them</caption>
+        <thead><tr><th scope="col">WCAG criterion</th><th scope="col">How the system meets it</th></tr></thead>
+        <tbody>
+          <tr><td>1.4.3 Contrast (minimum)</td><td>All text pairs are at least 4.5:1, checked by an automated test.</td></tr>
+          <tr><td>1.4.11 Non-text contrast</td><td>Borders and focus ring are at least 3:1.</td></tr>
+          <tr><td>1.4.1 Use of colour</td><td>Errors and alerts have text labels, not just colour.</td></tr>
+          <tr><td>2.1.1 Keyboard</td><td>Every component works with a keyboard; tabs and dialogs follow WAI-ARIA patterns.</td></tr>
+          <tr><td>2.4.7 Focus visible</td><td>3px focus outline on every interactive element.</td></tr>
+          <tr><td>2.5.8 Target size (minimum)</td><td>Targets are 44px, above the 24px minimum.</td></tr>
+          <tr><td>3.3.1 Error identification</td><td>Errors are described in text and listed in an error summary.</td></tr>
+          <tr><td>3.3.2 Labels or instructions</td><td>Visible labels and hints on every field.</td></tr>
+          <tr><td>4.1.2 Name, role, value</td><td>Native elements first; ARIA roles and states where needed.</td></tr>
+        </tbody>
+      </table>
+      <p>Automated checks catch only some problems, so each component should also be checked by hand with the keyboard and a screen reader such as NVDA (see the test plan in the case study).</p>
+    </section>
+  </main>
+</div>
+<script src="js/components.js"></script>
+<script>
+  document.getElementById("demo-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    window.DS.validateForm(e.target);
+  });
+</script>
+</body>
+</html>

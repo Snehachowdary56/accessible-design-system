@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UX case study: an accessible health claim flow – Harbour Design System</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+<a class="ds-skip-link" href="#main">Skip to main content</a>
+<div class="doc">
+  <nav aria-label="Site"><p><a href="index.html">Design system</a> · <a href="prototype.html">Prototype</a></p></nav>
+  <main id="main">
+    <header>
+      <h1>UX case study: an accessible health claim flow</h1>
+      <p>Student concept project. The company, users and data are fictional; the research plan below
+        describes how the design would be tested with real people.</p>
+    </header>
+
+    <section aria-labelledby="problem-h">
+      <h2 id="problem-h">1. The problem</h2>
+      <p>Submitting a health or dental claim online is often a single long form. Common problems
+        in claim and insurance forms are well known: unclear field formats, errors shown only in red,
+        errors that appear only after submitting, and no way to check answers before sending.
+        These problems hit hardest for people using screen readers, keyboards or small phones.</p>
+      <p><strong>Goal:</strong> a claim flow that anyone can finish in a few minutes, built only from reusable,
+        accessible design system components.</p>
+    </section>
+
+    <section aria-labelledby="users-h">
+      <h2 id="users-h">2. Who it is for (assumptions to test)</h2>
+      <div class="grid-3">
+        <div class="ds-card"><h3>Priya, 34</h3><p>Submits dental claims for her family on her phone between tasks. Needs to stop and continue later.</p></div>
+        <div class="ds-card"><h3>Daniel, 61</h3><p>Uses a screen reader. Needs clear labels, errors that are announced, and predictable focus.</p></div>
+        <div class="ds-card"><h3>Mei, 27</h3><p>Uses keyboard only after a wrist injury. Needs every action reachable with Tab, Enter and arrows.</p></div>
+      </div>
+      <p>These are proto-personas: assumptions written down so they can be checked in research, not findings.</p>
+    </section>
+
+    <section aria-labelledby="journey-h">
+      <h2 id="journey-h">3. Journey map</h2>
+      <table>
+        <caption class="ds-visually-hidden">Journey map of submitting a claim</caption>
+        <thead><tr><th scope="col">Stage</th><th scope="col">User goal</th><th scope="col">Pain point today</th><th scope="col">Design response</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Start</th><td>Find where to claim</td><td>Long form, no idea how long it takes</td><td>3-step stepper shows progress from the start</td></tr>
+          <tr><th scope="row">Details</th><td>Enter policy and date</td><td>Unclear formats, errors only after submit</td><td>Hints under each label; errors per step, in text</td></tr>
+          <tr><th scope="row">Receipt</th><td>Upload proof</td><td>Unknown file types and size limit</td><td>Accepted types and size shown before upload</td></tr>
+          <tr><th scope="row">Review</th><td>Check before sending</td><td>No summary; mistakes found later</td><td>“Check your answers” page with a change option</td></tr>
+          <tr><th scope="row">After</th><td>Know what happens next</td><td>No reference number or timeline</td><td>Confirmation with reference number and timeline</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section aria-labelledby="wire-h">
+      <h2 id="wire-h">4. Low-fidelity wireframes</h2>
+      <p>Sketched first in greyscale so the discussion is about structure, not colour.</p>
+      <div class="grid-3">
+        <figure>
+          <svg viewBox="0 0 200 300" width="200" height="300" role="img" aria-labelledby="w1t w1d">
+            <title id="w1t">Wireframe of step 1</title>
+            <desc id="w1d">Stepper at top, policy number field with hint, three radio buttons for claim type, date field, and a Continue button.</desc>
+            <rect x="1" y="1" width="198" height="298" fill="#fff" stroke="#4A5468"/>
+            <rect x="12" y="14" width="176" height="14" rx="7" fill="#C9CED8"/>
+            <rect x="12" y="44" width="80" height="8" fill="#4A5468"/><rect x="12" y="58" width="176" height="24" fill="#fff" stroke="#4A5468"/>
+            <rect x="12" y="98" width="100" height="8" fill="#4A5468"/>
+            <circle cx="20" cy="120" r="6" fill="#fff" stroke="#4A5468"/><rect x="32" y="116" width="60" height="8" fill="#C9CED8"/>
+            <circle cx="20" cy="140" r="6" fill="#fff" stroke="#4A5468"/><rect x="32" y="136" width="60" height="8" fill="#C9CED8"/>
+            <circle cx="20" cy="160" r="6" fill="#fff" stroke="#4A5468"/><rect x="32" y="156" width="80" height="8" fill="#C9CED8"/>
+            <rect x="12" y="184" width="80" height="8" fill="#4A5468"/><rect x="12" y="198" width="176" height="24" fill="#fff" stroke="#4A5468"/>
+            <rect x="12" y="250" width="90" height="28" rx="4" fill="#4A5468"/>
+          </svg>
+          <figcaption>Step 1: about the claim</figcaption>
+        </figure>
+        <figure>
+          <svg viewBox="0 0 200 300" width="200" height="300" role="img" aria-labelledby="w2t w2d">
+            <title id="w2t">Wireframe of step 2</title>
+            <desc id="w2d">Stepper, amount field with hint, file upload area listing accepted types, and Back and Continue buttons.</desc>
+            <rect x="1" y="1" width="198" height="298" fill="#fff" stroke="#4A5468"/>
+            <rect x="12" y="14" width="176" height="14" rx="7" fill="#C9CED8"/>
+            <rect x="12" y="44" width="90" height="8" fill="#4A5468"/><rect x="12" y="58" width="176" height="24" fill="#fff" stroke="#4A5468"/>
+            <rect x="12" y="98" width="90" height="8" fill="#4A5468"/>
+            <rect x="12" y="112" width="176" height="80" fill="#fff" stroke="#4A5468" stroke-dasharray="4 3"/>
+            <rect x="52" y="148" width="96" height="8" fill="#C9CED8"/>
+            <rect x="12" y="250" width="70" height="28" rx="4" fill="#fff" stroke="#4A5468"/>
+            <rect x="98" y="250" width="90" height="28" rx="4" fill="#4A5468"/>
+          </svg>
+          <figcaption>Step 2: receipt</figcaption>
+        </figure>
+        <figure>
+          <svg viewBox="0 0 200 300" width="200" height="300" role="img" aria-labelledby="w3t w3d">
+            <title id="w3t">Wireframe of step 3</title>
+            <desc id="w3d">Stepper, a list of answers as label and value pairs, and Change answers and Submit claim buttons.</desc>
+            <rect x="1" y="1" width="198" height="298" fill="#fff" stroke="#4A5468"/>
+            <rect x="12" y="14" width="176" height="14" rx="7" fill="#C9CED8"/>
+            <g fill="#C9CED8">
+              <rect x="12" y="50" width="60" height="8"/><rect x="100" y="50" width="88" height="8"/>
+              <rect x="12" y="74" width="60" height="8"/><rect x="100" y="74" width="70" height="8"/>
+              <rect x="12" y="98" width="60" height="8"/><rect x="100" y="98" width="80" height="8"/>
+              <rect x="12" y="122" width="60" height="8"/><rect x="100" y="122" width="50" height="8"/>
+            </g>
+            <rect x="12" y="250" width="80" height="28" rx="4" fill="#fff" stroke="#4A5468"/>
+            <rect x="98" y="250" width="90" height="28" rx="4" fill="#4A5468"/>
+          </svg>
+          <figcaption>Step 3: check your answers</figcaption>
+        </figure>
+      </div>
+      <p>High fidelity: the <a href="prototype.html">clickable prototype</a> is built entirely from the design system components.</p>
+    </section>
+
+    <section aria-labelledby="decisions-h">
+      <h2 id="decisions-h">5. Key design decisions</h2>
+      <ul>
+        <li><strong>One topic per step.</strong> Three short steps instead of one long form, with a stepper so users always know where they are.</li>
+        <li><strong>Validate each step, not at the end.</strong> Errors appear in text next to the field and in a summary at the top that receives focus and links to each field.</li>
+        <li><strong>Move focus to each new step's heading</strong> so screen reader users hear where they are.</li>
+        <li><strong>Formats before input.</strong> Hints like “8 digits” and “PDF, JPG or PNG, up to 10 MB” prevent errors instead of reporting them.</li>
+        <li><strong>Review before submit.</strong> A “Check your answers” step reduces wrong submissions.</li>
+        <li><strong>Reuse, don't invent.</strong> No one-off styles: every element is a design system component, so the next team gets the same accessibility for free.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="a11y-review-h">
+      <h2 id="a11y-review-h">6. Accessibility review</h2>
+      <table>
+        <caption class="ds-visually-hidden">Accessibility checks for the claim flow</caption>
+        <thead><tr><th scope="col">Check</th><th scope="col">Method</th><th scope="col">Result</th></tr></thead>
+        <tbody>
+          <tr><td>Colour contrast of all token pairs</td><td>Automated test (WCAG formula)</td><td>14 of 14 pairs pass AA</td></tr>
+          <tr><td>WCAG 2.2 A/AA rules on every page</td><td>Automated test with axe-core</td><td>No violations</td></tr>
+          <tr><td>Keyboard-only: complete the claim</td><td>Manual</td><td>To do</td></tr>
+          <tr><td>Screen reader (NVDA): complete the claim</td><td>Manual</td><td>To do</td></tr>
+          <tr><td>200% zoom and 320px width</td><td>Manual</td><td>To do</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section aria-labelledby="test-h">
+      <h2 id="test-h">7. Usability test plan</h2>
+      <p><strong>Who:</strong> 5 participants, including at least one keyboard-only user and one screen reader user.
+        <strong>How:</strong> 20-minute moderated sessions, think-aloud, on the prototype.</p>
+      <ol>
+        <li>“You had a dental cleaning on 3 November. Submit a claim for it.”</li>
+        <li>“You typed your policy number wrong. Fix it and continue.”</li>
+        <li>“Before sending, change the claim type to Vision.”</li>
+      </ol>
+      <p><strong>Measures:</strong> task success, time on task, number of errors, and a single ease question (1–7) after each task.</p>
+      <table>
+        <caption class="ds-visually-hidden">Usability findings, to be filled in after testing</caption>
+        <thead><tr><th scope="col">Finding</th><th scope="col">How many participants</th><th scope="col">Change made</th></tr></thead>
+        <tbody><tr><td colspan="3">Fill in after running the sessions.</td></tr></tbody>
+      </table>
+    </section>
+
+    <section aria-labelledby="next-h">
+      <h2 id="next-h">8. What I would do next</h2>
+      <ul>
+        <li>Run the usability sessions above and update the design from the findings.</li>
+        <li>Add a “save and continue later” option for users like Priya.</li>
+        <li>Add a date picker component and test it with screen readers before adding it to the system.</li>
+      </ul>
+    </section>
+  </main>
+</div>
+</body>
+</html>
