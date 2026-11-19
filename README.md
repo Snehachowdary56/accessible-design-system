@@ -16,9 +16,9 @@ A small design system for a fictional insurance company and a UX case study that
 
 Pages: `index.html` (design system docs), `case-study.html`, `prototype.html`.
 
-**React claims portal:** [`claims-portal/`](claims-portal/README.md) turns the claim flow into a working
-web application: React, Webpack, Bootstrap themed with these tokens, an Express API serving XML and JSON,
-23 Jest tests including accessibility checks, and a browser test in CI.
+**React claims portal:** [claims-portal](https://github.com/Snehachowdary56/claims-portal) turns this
+claim flow into a working web application: React, Webpack, Bootstrap themed with these tokens, an Express
+API serving XML and JSON, 23 Jest tests including accessibility checks, and a browser test in CI.
 
 > The company, people and data are fictional. Usability findings are left blank until real sessions are run.
 
