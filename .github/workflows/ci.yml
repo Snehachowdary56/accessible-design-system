@@ -2,6 +2,7 @@ name: tests
 on: [push, pull_request]
 jobs:
   test:
+    name: Design system (tokens, axe, keyboard)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -11,3 +12,32 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run tokens
+
+  claims-portal:
+    name: Claims portal (React, Webpack, Bootstrap)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: claims-portal
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: claims-portal/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - name: Unit, API and accessibility tests (Jest, React Testing Library, jest-axe)
+        run: npm test
+      - name: Production build (fails if the performance budget is exceeded)
+        run: npm run build
+      - name: Browser test against the production build
+        run: |
+          npx playwright install --with-deps chromium
+          npm run e2e
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: claims-portal-screenshots
+          path: claims-portal/e2e-shots/
